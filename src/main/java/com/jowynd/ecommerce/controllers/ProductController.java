@@ -1,7 +1,7 @@
 package com.jowynd.ecommerce.controllers;
 
 import com.jowynd.ecommerce.domain.Product;
-import com.jowynd.ecommerce.dto.ProductDTO;
+import com.jowynd.ecommerce.dto.product.ProductDTO;
 import com.jowynd.ecommerce.dto.product.ProductUpdateDTO;
 import com.jowynd.ecommerce.services.ProductService;
 import jakarta.validation.Valid;

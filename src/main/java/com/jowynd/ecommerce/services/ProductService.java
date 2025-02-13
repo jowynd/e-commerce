@@ -1,7 +1,7 @@
 package com.jowynd.ecommerce.services;
 
 import com.jowynd.ecommerce.domain.Product;
-import com.jowynd.ecommerce.dto.ProductDTO;
+import com.jowynd.ecommerce.dto.product.ProductDTO;
 import com.jowynd.ecommerce.dto.product.ProductUpdateDTO;
 import com.jowynd.ecommerce.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
