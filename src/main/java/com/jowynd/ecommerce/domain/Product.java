@@ -1,7 +1,11 @@
 package com.jowynd.ecommerce.domain;
 
+import com.jowynd.ecommerce.domain.order.OrderItem;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -28,4 +32,6 @@ public class Product {
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
+    @OneToMany
+    private List<OrderItem> orderItem = new ArrayList<>();
 }
