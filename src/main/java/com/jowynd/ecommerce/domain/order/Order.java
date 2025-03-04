@@ -23,9 +23,6 @@ public class Order {
     @Column(name = "total_price", nullable = false)
     private double totalPrice;
 
-    @Column(name = "payment_info", nullable = false)
-    private String paymentInfo;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status", nullable = false)
     private OrderStatus orderStatus;
