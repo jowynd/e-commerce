@@ -1,4 +1,21 @@
 package com.jowynd.ecommerce.dto.product;
 
-public record ProductDTO(Long id, String productName, String description, double price, int quantity) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record ProductDTO(
+
+        Long id,
+
+        @NotBlank
+        String productName,
+
+        @NotBlank
+        String description,
+
+        @NotNull
+        double price,
+
+        @NotNull
+        int quantity) {
 }

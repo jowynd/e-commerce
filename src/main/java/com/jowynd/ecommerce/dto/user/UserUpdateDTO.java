@@ -1,4 +1,15 @@
 package com.jowynd.ecommerce.dto.user;
 
-public record UserUpdateDTO(String username, String email, String password) {
+import jakarta.validation.constraints.NotBlank;
+
+public record UserUpdateDTO(
+
+        @NotBlank
+        String username,
+
+        @NotBlank
+        String email,
+
+        @NotBlank
+        String password) {
 }
