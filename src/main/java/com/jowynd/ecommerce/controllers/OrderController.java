@@ -1,7 +1,7 @@
 package com.jowynd.ecommerce.controllers;
 
-import com.jowynd.ecommerce.dto.order.OrderCreateDTO;import com.jowynd.ecommerce.dto.order.OrderResponseDTO;
-import com.jowynd.ecommerce.dto.order.OrderUpdateDTO;
+import com.jowynd.ecommerce.domain.order.Order;
+import com.jowynd.ecommerce.dto.order.*;
 import com.jowynd.ecommerce.services.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,14 @@ public class OrderController {
         return ResponseEntity.ok().body("Order created with success!");
     }
 
+    @PutMapping(value = "/{id}/item")
+    public ResponseEntity addItemToOrder(@PathVariable @Valid Long id, @RequestBody List<OrderItemCreateDTO> dto) {
+
+        orderService.addItemToOrder(id, dto);
+
+        return ResponseEntity.ok().body(dto);
+    }
+
     @GetMapping
     public ResponseEntity findAllOrders() {
 
@@ -33,12 +41,21 @@ public class OrderController {
         return ResponseEntity.ok().body(list);
     }
 
+    @GetMapping(value = "/{id}/test")
+    public ResponseEntity findFullOrderById(@PathVariable @Valid Long id) {
+
+        OrderResponseWithItemsDTO order = orderService.fullOrder(id);
+
+        return ResponseEntity.ok().body(order);
+    }
+
+
     @GetMapping(value = "/{id}")
     public ResponseEntity findOrderById(@PathVariable @Valid Long id) {
 
-        OrderResponseDTO response = orderService.findOrderById(id);
+        OrderResponseDTO order = orderService.findOrderById(id);
 
-        return ResponseEntity.ok().body(response);
+        return ResponseEntity.ok().body(order);
     }
 
     @PutMapping(value = "/{id}")

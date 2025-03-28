@@ -1,17 +1,22 @@
 package com.jowynd.ecommerce.services;
 
+import com.jowynd.ecommerce.domain.Product;
 import com.jowynd.ecommerce.domain.User;
 import com.jowynd.ecommerce.domain.order.Order;
+import com.jowynd.ecommerce.domain.order.OrderItem;
 import com.jowynd.ecommerce.domain.order.OrderStatus;
-import com.jowynd.ecommerce.dto.order.OrderCreateDTO;
-import com.jowynd.ecommerce.dto.order.OrderResponseDTO;
-import com.jowynd.ecommerce.dto.order.OrderUpdateDTO;
+import com.jowynd.ecommerce.dto.order.*;
+import com.jowynd.ecommerce.dto.product.ProductInfoDTO;
 import com.jowynd.ecommerce.dto.user.UserInfoDTO;
+import com.jowynd.ecommerce.repositories.OrderItemRepository;
 import com.jowynd.ecommerce.repositories.OrderRepository;
+import com.jowynd.ecommerce.repositories.ProductRepository;
 import com.jowynd.ecommerce.repositories.UserRepository;
+import jakarta.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +30,11 @@ public class OrderService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     public OrderResponseDTO AddOrder(OrderCreateDTO dto) {
 
@@ -35,10 +45,54 @@ public class OrderService {
         order.setTotalPrice(order.getTotalPrice());
         order.setOrderStatus(OrderStatus.PREPARING);
         order.setUser(user);
-        
+
         orderRepository.save(order);
-        
+
         return new OrderResponseDTO(dto.id(), dto.totalPrice(), dto.orderStatus(), dto.userInfoDTO());
+    }
+
+    public void addItemToOrder(Long id, List<OrderItemCreateDTO> itemsDTO) {
+
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException());
+
+        for (OrderItemCreateDTO itemDTO : itemsDTO) {
+            Product product = productRepository.findById(itemDTO.productId())
+                    .orElseThrow(() -> new RuntimeException());
+
+            OrderItem orderItem = new OrderItem();
+
+            orderItem.setOrder(order);
+            orderItem.setProduct(product);
+            orderItem.setQuantity(itemDTO.quantity());
+            orderItem.setUnitPrice(product.getPrice());
+
+            order.getOrderItem().add(orderItem);
+        }
+
+        orderRepository.save(order);
+
+    }
+
+    public OrderResponseWithItemsDTO fullOrder(Long id) {
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException());
+
+        return new OrderResponseWithItemsDTO(
+                order.getId(),
+                order.getOrderStatus(),
+                order.getTotalPrice(),
+                order.getOrderItem().stream()
+                        .map(orderItem -> new OrderItemDTO(
+                                orderItem.getId(),
+                                orderItem.getQuantity(),
+                                orderItem.getUnitPrice(),
+                                new ProductInfoDTO(
+                                        orderItem.getProduct().getId(),
+                                        orderItem.getProduct().getProductName()
+
+                                ))
+                        ).toList());
     }
 
     public List<OrderResponseDTO> findAllOrders() {
@@ -53,7 +107,7 @@ public class OrderService {
         )).collect(Collectors.toList());
     }
 
-    public OrderResponseDTO findOrderById(Long id) {
+     public OrderResponseDTO findOrderById(Long id) {
 
         Optional<Order> order = orderRepository.findById(id);
         return new OrderResponseDTO(
