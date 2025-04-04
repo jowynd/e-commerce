@@ -53,12 +53,19 @@ public class UserService {
 
     public User updateUser(Long id, UserUpdateDTO dto) {
 
+
         Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
 
         User user = optionalUser.get();
                 user.setUsername(dto.username());
                 user.setEmail(dto.email());
                 user.setPassword(dto.password());
+
+                userRepository.save(user);
 
                 return user;
     }
