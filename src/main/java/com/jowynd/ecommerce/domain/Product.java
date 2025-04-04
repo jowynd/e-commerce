@@ -32,6 +32,9 @@ public class Product {
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
+    @Column(name = "active", nullable = false)
+    private boolean active = true;
+
     @OneToMany
     private List<OrderItem> orderItem = new ArrayList<>();
 }

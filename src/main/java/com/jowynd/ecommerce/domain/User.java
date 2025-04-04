@@ -29,6 +29,9 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "active", nullable = false)
+    private boolean active = true;
+
     @OneToMany
     @JoinColumn(name = "order_id")
     private List<Order> order = new ArrayList<>();
