@@ -53,4 +53,18 @@ public class ProductController {
 
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping(value = "/{id}/inactive")
+    public ResponseEntity turnInactive(@PathVariable Long id) {
+        service.turnInactive(id);
+
+        return ResponseEntity.ok().body("Inactive!");
+    }
+
+    @PutMapping(value = "/{id}/active")
+    public ResponseEntity turnActive(@PathVariable Long id) {
+        service.turnActive(id);
+
+        return ResponseEntity.ok().body("Active!");
+    }
 }

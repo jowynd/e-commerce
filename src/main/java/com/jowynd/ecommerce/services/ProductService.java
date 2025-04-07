@@ -73,4 +73,22 @@ public class ProductService {
     public void deleteById (Long id) {
         repository.deleteById(id);
     }
+
+    public void turnInactive(Long id) {
+        Product product = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("This product does not exist!"));
+
+        product.setActive(false);
+
+        repository.save(product);
+    }
+
+    public void turnActive(Long id) {
+        Product product = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("This product does not exist!"));
+
+        product.setActive(true);
+
+        repository.save(product);
+    }
 }
