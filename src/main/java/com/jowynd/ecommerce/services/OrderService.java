@@ -12,11 +12,9 @@ import com.jowynd.ecommerce.repositories.OrderItemRepository;
 import com.jowynd.ecommerce.repositories.OrderRepository;
 import com.jowynd.ecommerce.repositories.ProductRepository;
 import com.jowynd.ecommerce.repositories.UserRepository;
-import jakarta.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -63,6 +61,11 @@ public class OrderService {
             OrderItem orderItem = new OrderItem();
 
             orderItem.setOrder(order);
+
+            if (!product.isActive()){
+                throw new RuntimeException("Impossible to add this product, it's inactive!");
+            }
+
             orderItem.setProduct(product);
             orderItem.setQuantity(itemDTO.quantity());
             orderItem.setUnitPrice(product.getPrice());
@@ -71,7 +74,6 @@ public class OrderService {
         }
 
         orderRepository.save(order);
-
     }
 
     public OrderResponseWithItemsDTO fullOrder(Long id) {
@@ -89,7 +91,8 @@ public class OrderService {
                                 orderItem.getUnitPrice(),
                                 new ProductInfoDTO(
                                         orderItem.getProduct().getId(),
-                                        orderItem.getProduct().getProductName()
+                                        orderItem.getProduct().getProductName(),
+                                        orderItem.getProduct().isActive()
 
                                 ))
                         ).toList());

@@ -37,7 +37,8 @@ public class ProductService {
                 product.getProductName(),
                 product.getDescription(),
                 product.getPrice(),
-                product.getQuantity());
+                product.getQuantity(),
+                product.isActive());
     }
 
     public List<ProductDTO> getAllProducts() {
@@ -50,7 +51,8 @@ public class ProductService {
                         product.getProductName(),
                         product.getDescription(),
                         product.getPrice(),
-                        product.getQuantity()
+                        product.getQuantity(),
+                        product.isActive()
                 )).collect(Collectors.toList());
     }
 

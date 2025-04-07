@@ -17,5 +17,8 @@ public record ProductDTO(
         double price,
 
         @NotNull
-        int quantity) {
+        int quantity,
+
+        @NotBlank
+        boolean active) {
 }

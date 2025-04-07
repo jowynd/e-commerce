@@ -9,6 +9,9 @@ public record ProductInfoDTO(
         Long id,
 
         @NotBlank
-        String productName
+        String productName,
+
+        @NotBlank
+        boolean active
 ) {
 }
