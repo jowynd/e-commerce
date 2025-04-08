@@ -54,14 +54,14 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(value = "/{id}/inactive")
+    @PutMapping(value = "/{id}/inactivate")
     public ResponseEntity turnInactive(@PathVariable Long id) {
         service.turnInactive(id);
 
         return ResponseEntity.ok().body("Inactive!");
     }
 
-    @PutMapping(value = "/{id}/active")
+    @PutMapping(value = "/{id}/activate")
     public ResponseEntity turnActive(@PathVariable Long id) {
         service.turnActive(id);
 

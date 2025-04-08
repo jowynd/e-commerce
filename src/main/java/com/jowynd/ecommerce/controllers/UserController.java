@@ -51,4 +51,18 @@ public class UserController {
 
         return ResponseEntity.ok().body("User deleted with success!");
     }
+
+    @PutMapping(value = "/{id}/inactivate")
+    public ResponseEntity turnInactive(@PathVariable Long id) {
+        userService.turnInactive(id);
+
+        return ResponseEntity.ok().body("Inactive!");
+    }
+
+    @PutMapping(value = "/{id}/activate")
+    public ResponseEntity turnActive(@PathVariable Long id) {
+        userService.turnActive(id);
+
+        return ResponseEntity.ok().body("Active!");
+    }
 }

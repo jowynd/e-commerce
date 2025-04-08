@@ -73,4 +73,22 @@ public class UserService {
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
+
+    public void turnInactive(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setActive(false);
+
+        userRepository.save(user);
+    }
+
+    public void turnActive(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setActive(true);
+
+        userRepository.save(user);
+    }
 }
