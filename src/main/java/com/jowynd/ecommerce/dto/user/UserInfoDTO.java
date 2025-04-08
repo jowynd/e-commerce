@@ -9,5 +9,8 @@ public record UserInfoDTO(
     Long id,
 
     @NotBlank
-    String username) {
+    String username,
+
+    @NotBlank
+    boolean active) {
 }

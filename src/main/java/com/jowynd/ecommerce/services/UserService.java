@@ -7,7 +7,6 @@ import com.jowynd.ecommerce.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,7 +34,8 @@ public class UserService {
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getPassword()
+                user.getPassword(),
+                user.isActive()
         );
     }
 
@@ -47,8 +47,9 @@ public class UserService {
                         user.getId(),
                         user.getUsername(),
                         user.getEmail(),
-                        user.getPassword()
-                )).collect(Collectors.toUnmodifiableList());
+                        user.getPassword(),
+                        user.isActive()
+                )).collect(Collectors.toList());
     }
 
     public User updateUser(Long id, UserUpdateDTO dto) {
@@ -65,9 +66,7 @@ public class UserService {
                 user.setEmail(dto.email());
                 user.setPassword(dto.password());
 
-                userRepository.save(user);
-
-                return user;
+                return userRepository.save(user);
     }
 
     public void deleteById(Long id) {

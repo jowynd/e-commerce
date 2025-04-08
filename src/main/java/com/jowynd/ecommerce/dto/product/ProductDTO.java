@@ -19,6 +19,5 @@ public record ProductDTO(
         @NotNull
         int quantity,
 
-        @NotBlank
         boolean active) {
 }

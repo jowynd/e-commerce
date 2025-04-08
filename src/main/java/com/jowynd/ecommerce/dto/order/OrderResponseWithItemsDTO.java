@@ -1,6 +1,7 @@
 package com.jowynd.ecommerce.dto.order;
 
 import com.jowynd.ecommerce.domain.order.OrderStatus;
+import com.jowynd.ecommerce.dto.user.UserInfoDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -16,6 +17,9 @@ public record OrderResponseWithItemsDTO(
 
         @NotNull
         double totalPrice,
+
+        @NotBlank
+        UserInfoDTO userInfoDto,
 
         List<OrderItemDTO> items
 ) {

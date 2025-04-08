@@ -84,6 +84,10 @@ public class OrderService {
                 order.getId(),
                 order.getOrderStatus(),
                 order.getTotalPrice(),
+                new UserInfoDTO(
+                        order.getUser().getId(),
+                        order.getUser().getUsername(),
+                        order.getUser().isActive()),
                 order.getOrderItem().stream()
                         .map(orderItem -> new OrderItemDTO(
                                 orderItem.getId(),
@@ -106,7 +110,10 @@ public class OrderService {
                 order.getId(),
                 order.getTotalPrice(),
                 order.getOrderStatus(),
-                new UserInfoDTO(order.getUser().getId(), order.getUser().getUsername())
+                new UserInfoDTO(
+                        order.getUser().getId(),
+                        order.getUser().getUsername(),
+                        order.getUser().isActive())
         )).collect(Collectors.toList());
     }
 
@@ -117,8 +124,10 @@ public class OrderService {
                 order.get().getId(),
                 order.get().getTotalPrice(),
                 order.get().getOrderStatus(),
-                new UserInfoDTO(order.get().getUser().getId(),
-                order.get().getUser().getUsername()));
+                new UserInfoDTO(
+                        order.get().getUser().getId(),
+                        order.get().getUser().getUsername(),
+                        order.get().getUser().isActive()));
     }
 
     public Order updateOrder(Long id, OrderUpdateDTO dto) {
