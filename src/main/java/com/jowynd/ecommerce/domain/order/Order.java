@@ -1,6 +1,6 @@
 package com.jowynd.ecommerce.domain.order;
 
-import com.jowynd.ecommerce.domain.User;
+import com.jowynd.ecommerce.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 

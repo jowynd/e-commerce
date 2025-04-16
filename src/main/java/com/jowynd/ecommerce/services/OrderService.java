@@ -1,7 +1,7 @@
 package com.jowynd.ecommerce.services;
 
 import com.jowynd.ecommerce.domain.Product;
-import com.jowynd.ecommerce.domain.User;
+import com.jowynd.ecommerce.domain.user.User;
 import com.jowynd.ecommerce.domain.order.Order;
 import com.jowynd.ecommerce.domain.order.OrderItem;
 import com.jowynd.ecommerce.domain.order.OrderStatus;

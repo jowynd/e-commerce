@@ -1,6 +1,6 @@
 package com.jowynd.ecommerce.services;
 
-import com.jowynd.ecommerce.domain.User;
+import com.jowynd.ecommerce.domain.user.User;
 import com.jowynd.ecommerce.dto.user.UserDTO;
 import com.jowynd.ecommerce.dto.user.UserUpdateDTO;
 import com.jowynd.ecommerce.repositories.UserRepository;
