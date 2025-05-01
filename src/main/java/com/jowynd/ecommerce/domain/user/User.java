@@ -44,13 +44,23 @@ public class User implements UserDetails {
     @JoinColumn(name = "order_id")
     private List<Order> order = new ArrayList<>();
 
+    public User(String username, String email, String password, UserRole role) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == UserRole.ADMIN) {
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        } else {
+        }
+        if (this.role == UserRole.USER) {
             return List.of(new SimpleGrantedAuthority("ROLE_USER"));
         }
+
+        else throw new RuntimeException("UserRole is null");
     }
 
     @Override
@@ -73,3 +83,4 @@ public class User implements UserDetails {
         return UserDetails.super.isEnabled();
     }
 }
+
