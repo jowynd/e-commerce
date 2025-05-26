@@ -41,6 +41,7 @@ public class AuthenticationController {
         return ResponseEntity.ok().body(new LoginResponseDTO(token));
     }
 
+    //register the user with the default user role
     @PostMapping(value = "/register")
     public ResponseEntity register(@RequestBody @Valid UserCreateDTO dto) {
 
@@ -49,7 +50,7 @@ public class AuthenticationController {
         }
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(dto.password());
-        User newUser = new User(dto.username(), dto.email(), encryptedPassword, dto.userRole());
+        User newUser = new User(dto.username(), dto.email(), encryptedPassword);
 
         userRepository.save(newUser);
 
