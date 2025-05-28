@@ -1,5 +1,6 @@
 package com.jowynd.ecommerce.dto.user;
 
+import com.jowynd.ecommerce.domain.user.UserRole;
 import jakarta.validation.constraints.NotBlank;
 
 public record UserDTO(
@@ -15,5 +16,7 @@ public record UserDTO(
         @NotBlank
         String password,
 
-        boolean active) {
+        boolean active,
+
+        UserRole userRole) {
 }

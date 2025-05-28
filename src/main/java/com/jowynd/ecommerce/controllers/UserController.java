@@ -2,6 +2,7 @@ package com.jowynd.ecommerce.controllers;
 
 import com.jowynd.ecommerce.dto.user.UserDTO;
 import com.jowynd.ecommerce.dto.user.UserUpdateDTO;
+import com.jowynd.ecommerce.dto.user.UserUpdateRoleDTO;
 import com.jowynd.ecommerce.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,12 @@ public class UserController {
         userService.turnActive(id);
 
         return ResponseEntity.ok().body("Active!");
+    }
+
+    @PutMapping(value = "/role/update/{id}")
+    public ResponseEntity updateRole(@PathVariable Long id, @RequestBody UserUpdateRoleDTO dto) {
+        userService.updateRole(id, dto);
+
+        return ResponseEntity.ok().body("Updated!");
     }
 }

@@ -48,6 +48,7 @@ public class SecurityConfigurations {
                             .requestMatchers(HttpMethod.PUT, "/user/{id}/activate").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.PUT, "/user/{id}/inactivate").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.DELETE, "/user/{id}").hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.PUT, "/user/role/update/{id}").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.DELETE, "/orders/{id}").hasRole("ADMIN")
                             .anyRequest()
                             .authenticated())
@@ -58,14 +59,6 @@ public class SecurityConfigurations {
             throw new RuntimeException(e.getMessage());
         }
     }
-
-//Disable security
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-//        return httpSecurity
-//                .csrf(csrf -> csrf.disable())
-//                .build();
-//    }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) {

@@ -3,6 +3,7 @@ package com.jowynd.ecommerce.services;
 import com.jowynd.ecommerce.domain.user.User;
 import com.jowynd.ecommerce.dto.user.UserDTO;
 import com.jowynd.ecommerce.dto.user.UserUpdateDTO;
+import com.jowynd.ecommerce.dto.user.UserUpdateRoleDTO;
 import com.jowynd.ecommerce.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,8 @@ public class UserService {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                user.isActive()
+                user.isActive(),
+                user.getRole()
         );
     }
 
@@ -48,12 +50,12 @@ public class UserService {
                         user.getUsername(),
                         user.getEmail(),
                         user.getPassword(),
-                        user.isActive()
+                        user.isActive(),
+                        user.getRole()
                 )).collect(Collectors.toList());
     }
 
     public User updateUser(Long id, UserUpdateDTO dto) {
-
 
         Optional<User> optionalUser = userRepository.findById(id);
 
@@ -89,5 +91,18 @@ public class UserService {
         user.setActive(true);
 
         userRepository.save(user);
+    }
+
+    public User updateRole(Long id, UserUpdateRoleDTO dto) {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+
+        User user = optionalUser.get();
+        user.setRole(dto.userRole());
+
+        return userRepository.save(user);
     }
 }
