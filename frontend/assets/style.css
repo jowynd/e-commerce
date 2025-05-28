@@ -1,62 +1,126 @@
 /*login*/
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  .login-container {
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    text-align: center;
-    width: 300px;
-  }
-  
-  .login-container h1 {
-    margin-bottom: 20px;
-  }
-  
-  .login-container label {
-    text-align: left;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .login-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-  
-  .login-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .login-container button:hover {
-    background-color: #4cae4c;
-  }
-  
-  #error-message {
-    color: red;
-    margin-top: 10px;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+}
+
+.login-container h1 {
+  margin-bottom: 20px;
+}
+
+.login-container label {
+  text-align: left;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.login-container button {
+  width: 85%;
+  padding: 10px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #4cae4c;
+}
+
+#error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/*register*/
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.register-container {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+}
+
+.register-container h1 {
+  margin-bottom: 20px;
+}
+
+.register-container label {
+  text-align: left;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.register-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.register-container button {
+  width: 85%;
+  padding: 10px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.register-container button:hover {
+  background-color: #4cae4c;
+}
+
+#error-message {
+  color: red;
+  margin-top: 10px;
+}
 
 /*header*/
+
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
 
 .navbar {
   display: flex;
@@ -109,7 +173,71 @@ footer {
   text-align: center;
   padding: 20px 0;
   margin-top: 50px;
-  position: relative;
+  position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+/*dashboard*/
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboard-container h1 {
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.dashboard-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #f8f8f8;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.card p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.card .button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.card .button:hover {
+  background-color: #555;
+}
+
+/**/
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
 }
