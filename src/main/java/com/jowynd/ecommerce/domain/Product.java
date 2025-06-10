@@ -35,6 +35,10 @@ public class Product {
     @Column(name = "active", nullable = false)
     private boolean active = true;
 
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] image;
+
     @OneToMany
     private List<OrderItem> orderItem = new ArrayList<>();
 }

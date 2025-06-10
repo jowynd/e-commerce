@@ -19,5 +19,7 @@ public record ProductDTO(
         @NotNull
         int quantity,
 
-        boolean active) {
+        boolean active,
+
+        byte[] image) {
 }

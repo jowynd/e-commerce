@@ -43,6 +43,7 @@ public class SecurityConfigurations {
                             .requestMatchers(HttpMethod.PUT, "/product/{id}/activate").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.PUT, "/product/{id}/inactivate").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.DELETE, "/product/{id}").hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.GET, "product/{id}/image").permitAll()
                             .requestMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.PUT, "/user/{id}").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.PUT, "/user/{id}/activate").hasRole("ADMIN")

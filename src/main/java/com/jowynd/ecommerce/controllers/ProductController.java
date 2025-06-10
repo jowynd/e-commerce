@@ -6,9 +6,18 @@ import com.jowynd.ecommerce.dto.product.ProductUpdateDTO;
 import com.jowynd.ecommerce.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -66,5 +75,22 @@ public class ProductController {
         service.turnActive(id);
 
         return ResponseEntity.ok().body("Active!");
+    }
+
+    //receives a file and saves it to the product's image field
+    @PostMapping(value = "/{id}/upload-image")
+    public ResponseEntity<?> uploadImage(@PathVariable Long id, @RequestParam("image") MultipartFile file) {
+        service.uploadImage(id, file);
+        return ResponseEntity.ok("Image uploaded successfully!");
+    }
+
+    @GetMapping(value = "/{id}/image")
+    public ResponseEntity getProductImage(@PathVariable Long id) {
+        byte[] image = service.getImageByProductId(id);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+
+        return ResponseEntity.ok().body(image);
     }
 }
