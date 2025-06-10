@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/frontend/assets/dashboard.css">
+  <link rel="stylesheet" href="/frontend/assets/footer-header.css">
+</head>
+<body>
+  <header></header>
+  <main class="dashboard-container">
+    <h1>WELCOME!</h1>
+    <br><br>
+    <div class="dashboard-cards">
+      <div class="dashboard-card">
+        <h2>Catalog</h2>
+        <p>See all available products</p>
+        <br><br>
+        <a href="/frontend/pages/products.html" class="dashboard-card-button">Show products</a>
+      </div>
+      <div class="dashboard-card">
+        <h2>My orders</h2>
+        <p>See all your orders or make a new order!</p>
+        <br><br>
+        <a href="/frontend/pages/orders.html" class="dashboard-card-button">See orders</a>
+      </div>
+      <div class="dashboard-card">
+        <h2>My account</h2>
+        <p>Manage your informations</p>
+        <br><br>
+        <a href="/frontend/pages/account.html" class="dashboard-card-button">Account</a>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+  <script src="/frontend/js/utils.js"></script>
+  <script src="/frontend/js/auth/logout.js"></script>
+  <script src="/frontend/js/auth/token.js"></script>
+</body>
+</html>
